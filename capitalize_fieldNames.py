@@ -4,7 +4,7 @@
 
 import arcpy
 
-arcpy.env.workspace = r"D:\ESMData\MapperFiles\SparrowFiles\East_US\Sparrow_East_Us_wm.gdb"
+arcpy.env.workspace = r"D:\ESMData\MapperFiles\SparrowFiles\sparrow pacnorthwest\Pac_northwest_wm.gdb"
 
 fcList = arcpy.ListFeatureClasses()  # get all feature classes in .gdb
 
