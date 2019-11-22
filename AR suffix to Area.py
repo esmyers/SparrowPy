@@ -4,7 +4,7 @@
 
 import arcpy
 
-arcpy.env.workspace = r"D:\ESMData\MapperFiles\SparrowFiles\SparrowNorthwest\SPARROW_NW_Updated.gdb"
+arcpy.env.workspace = r"D:\ESMData\MapperFiles\SparrowFiles\SparrowPacific\9.24_update\process_wm.gdb"
 
 fcList = arcpy.ListFeatureClasses()  # get all feature classes in .gdb
 
@@ -13,25 +13,15 @@ fcList = arcpy.ListFeatureClasses()  # get all feature classes in .gdb
 
 
 for fc in fcList: #loop through all feature classes in the .gdb
-        if fc == 'mrb7_cats_state_tp' or fc == 'mrb7_cats_state_tn':
-               
-                fields = arcpy.ListFields(fc)
 
-                for field in fields:
-                    if field.name.lower()[-2:] == '_s':
-                        newName = field.name.upper()[:-2]  #get all but the last 2 characters of the string
+        fields = arcpy.ListFields(fc)
+
+        for field in fields:
+                if field.name.lower()[-3:] == '_ar':
+                        newName = field.name.upper()[:-3] + "_AREA"
                         print newName
                         arcpy.AlterField_management(fc, field.name, newName, newName)
                         
-
-
-
-
-
-
-
-
-
 
 
 

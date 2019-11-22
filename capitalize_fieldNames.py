@@ -4,7 +4,9 @@
 
 import arcpy
 
-arcpy.env.workspace = r"D:\ESMData\MapperFiles\SparrowFiles\sparrow pacnorthwest\Pac_northwest_wm.gdb"
+
+
+arcpy.env.workspace = r"D:\ESMData\MapperFiles\SparrowFiles\SparrowSoutheast\Southeast_10.6.2019_wm.gdb"
 
 fcList = arcpy.ListFeatureClasses()  # get all feature classes in .gdb
 
@@ -16,7 +18,7 @@ for fc in fcList: #loop through all feature classes in the .gdb
     fields = arcpy.ListFields(fc) #get fields in feature class
     
     for field in fields:
-        if not (field.name.lower() == "shape" or field.name.lower() == "objectid" or field.name.lower() == "shape_length" or field.name.lower() == "shape_area" or field.name.lower() == "objectid_1"):
+        if not (field.name.lower() == "shape" or field.name.lower() == "objectid" or field.name.lower() == "objectid_12" or field.name.lower() == "shape_length" or field.name.lower() == "shape_area" or field.name.lower() == "objectid_1"):
             newName = field.name.upper()
             print newName
             arcpy.AlterField_management(fc, field.name, newName + "_temp", newName) #set field name to: UPPERCASE_EXAMPLE_temp  args = ({feature class}, {field to change}, {New Name},{New Alias})
@@ -31,7 +33,7 @@ for fc in fcList: #loop through all feature classes in the .gdb
         if not (field.name.lower() == "shape" or field.name.lower() == "objectid" or field.name.lower() == "shape_length" or field.name.lower() == "shape_area" or field.name.lower() == "objectid_1"):
             fieldName = field.name
             useFieldName = fieldName[:-5]  #cut _temp off field name
-            print useFieldName
+            print "new" + useFieldName
             arcpy.AlterField_management(fc, fieldName, useFieldName, useFieldName)
 
 
